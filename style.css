@@ -1,3 +1,86 @@
-.s1_hello{
-  color: red;
+body {
+  margin: 0;
+  display: flex;
+  font-size: 2rem;
+  min-height: 100vh;
+}
+main {
+  width: 700px;
+  margin: 0 auto;
+}
+aside {
+  width: 20%;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+div {
+  margin-top: auto;
+  height: 300px;
+}
+
+/* 🍔 */
+.open,
+.close {
+  display: none;
+}
+input[type="checkbox"] {
+  /* display: none; 以外の方法で見えなくしないと、labelとの紐づけが亡くなってしまう */
+
+ position: absolute;
+ /* position: absolute;を指定することで、その要素の一番左上のところをtop,left,right,bottomで位置指定することができるようになる */
+ /* window上のどこに位置指定をするかを指示する場合はposition: absolute; */
+
+ /* left: -50vw; と指定することで画面の左半分に隠れている格好になる */
+ left: -50vw;
+
+}
+/* 🍔 */
+
+@media screen and (max-width: 1000px) {
+  main {
+      width: 100%;
+      padding-top: 50px; 
+      /* ハンバーガーメニューと被らないようにしている */
+  }
+  /* 🍔 */
+  .open,
+  .close {
+      /* スマホ、タブレットの時は表示させる */
+      display: block;
+  }
+  .open {
+    /* position: absolute;を指定することで、要素位置を座標で決めることができる */
+      position: absolute;
+  }
+  aside {
+      position: absolute;
+
+      left: -250px;
+      /* position: absolute;を指定すると、高さの設定が一度なくなってしまうので、もう一度height: 100%;を指定 */
+      height: 100%;
+      /* アニメーションをつける */
+      transition: all 0.2s;
+      background: #ffffff;
+  }
+
+  /* input[type="checkbox"]:checked ←チェックボックスにチェックが入った時 */
+  /* ~ aside  間接セレクタ  という
+  input[type="checkbox"]:checked ~ aside {    ←チェックが入ったチェックボックスと同じ兄弟要素である者に対してスタイルを変更するという意味 */
+  input[type="checkbox"]:checked ~ aside {
+      left: 0;
+  }
+  input[type="checkbox"]:checked ~ .back {
+      /* 画面全体を指定 */
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8) !important;
+  }
+  /* 🍔 */
 }
